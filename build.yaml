@@ -3,7 +3,7 @@ resources:
     - repository: aksdeploy
       type: github
       name: devtest/akspipeline
-      endpoint:devtest;
+      endpoint:devtest
 
 jobs:
 - template: azureterraform.yaml@templates  # Template reference
