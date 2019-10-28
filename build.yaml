@@ -1,9 +1,9 @@
 resources:
   repositories:
-    - repository: templates
+    - repository: aksdeploy
       type: github
-      name: SQLDBAWithABeard/Presentations-BuildTemplates-Private
-      endpoint: SQLDBAWithABeardGitHub
+      name: devtest/akspipeline
+      endpoint:devtest;
 
 jobs:
-- template: AzureTerraform.yaml@templates  # Template reference
+- template: azureterraform.yaml@templates  # Template reference
