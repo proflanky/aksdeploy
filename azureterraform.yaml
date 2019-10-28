@@ -9,7 +9,7 @@ jobs:
       azureSubscription: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
       scriptLocation: 'inlineScript'
       inlineScript: |
-      # the following script will create Azure resource group, Storage account and a Storage container which will be used to store terraform state
+        # the following script will create Azure resource group, Storage account and a Storage container which will be used to store terraform state
         call az group create --location $(location) --name $(TerraformStorageRG)
         
         call az storage account create --name $(TerraformStorageAccount) --resource-group $(TerraformStorageRG) --location $(location) --sku Standard_LRS
