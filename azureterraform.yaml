@@ -10,9 +10,9 @@ jobs:
       ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
       ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
       Script: |
-        New-AzureRmResourceGroup -Location $(location) -Name $(TerraformStorageRG)
-        New-AzureRmStorageAccount -ResourceGroupName $(TerraformStorageRG) -SkuName Standard_LRS -Location $(location)
-        New-AzureRmStorageContainer -ResourceGroupName $(TerraformStorageRG) -StorageAccountName $(TerraformStorageAccount) -Name terraform 
+        New-AzureRmResourceGroup -Name TerraformStorageRG -Location $(location) 
+        New-AzureRmStorageAccount -ResourceGroupName TerraformStorageRG -SkuName Standard_LRS -Location $(location)
+        New-AzureRmStorageContainer -ResourceGroupName TerraformStorageRG -StorageAccountName $(TerraformStorageAccount) -Name terraform 
 
   - task: AzurePowerShell@3
     displayName: 'Azure PowerShell script to get the storage key'
