@@ -4,15 +4,16 @@ jobs:
     name: Hosted VS2017
     demands: azureps
   steps:
-  - task: AzureCLI@2
+- task: AzureCLI@1
   inputs:
     azureSubscription: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
-    scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-    # the following script will create Azure resource group, Storage account and a Storage container which will be used to store terraform state
+      # the following script will create Azure resource group, Storage account and a Storage container which will be used to store terraform state
       call az group create --location $(location) --name $(TerraformStorageRG)
+      
       call az storage account create --name $(TerraformStorageAccount) --resource-group $(TerraformStorageRG) --location $(location) --sku Standard_LRS
+      
       call az storage container create --name terraform --account-name $(TerraformStorageAccount)
   - task: AzurePowerShell@3
     displayName: 'Azure PowerShell script to get the storage key'
