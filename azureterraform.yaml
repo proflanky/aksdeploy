@@ -4,18 +4,15 @@ jobs:
     name: Hosted VS2017
     demands: azureps
   steps:
-  - task: AzureCLI@1
-    displayName: 'Azure CLI to deploy azure storage for backend'
+
+  - task: InlineAzurePowershell@1
     inputs:
-      azureSubscription: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
-      scriptLocation: inlineScript
-      inlineScript: |
-        # the following script will create Azure resource group, Storage account and a Storage container which will be used to store terraform state
-        az group create --name $(TerraformStorageRG) --location $(location)
-        
-        az storage account create --name $(TerraformStorageAccount) --resource-group $(TerraformStorageRG) --location $(location) --sku Standard_LRS
-        
-        az storage container create --name terraform --account-name $(TerraformStorageAccount)
+      ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
+      ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
+      Script: |
+        New-AzureRmResourceGroup -Location $(location) -Name $(TerraformStorageRG)
+        New-AzureRmStorageAccount -ResourceGroupName $(TerraformStorageRG) -SkuName Standard_LRS -Location $(location)
+        New-AzureRmStorageContainer -ResourceGroupName $(TerraformStorageRG) -StorageAccountName $(TerraformStorageAccount) -Name terraform 
 
   - task: AzurePowerShell@3
     displayName: 'Azure PowerShell script to get the storage key'
@@ -25,7 +22,7 @@ jobs:
       Inline: |
         # Using this script we will fetch storage key which is required in terraform file to authenticate backend stoarge account
       
-        $key=(Get-AzureRmStorageAccountKey -ResourceGroupName $(TerraformStorageRG) -AccountName $(TerraformStorageAccount)).Value[0]
+        $key=(Get-AzureRmStorageAccountKey -ResourceGroupName -AccountName $(TerraformStorageAccount)).Value[0]
       
         Write-Host "##vso[task.setvariable variable=TerraformStorageKey]$key"
       azurePowerShellVersion: LatestVersion
