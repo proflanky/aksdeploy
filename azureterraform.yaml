@@ -10,8 +10,8 @@ jobs:
       ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
       ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
       Script: |
-        New-AzureRmResourceGroup -Name TerraformStorageRG -Location East US 
-        New-AzureRmStorageAccount -Name TerraformStorageAccount -ResourceGroupName TerraformStorageRG -SkuName Standard_LRS -Location East US
+        New-AzureRmResourceGroup -Name TerraformStorageRG -Location 'East US' 
+        New-AzureRmStorageAccount -Name TerraformStorageAccount -ResourceGroupName TerraformStorageRG -SkuName Standard_LRS -Location 'East US'
         New-AzureRmStorageContainer -ResourceGroupName TerraformStorageRG -StorageAccountName $(TerraformStorageAccount) -Name terraform 
 
   - task: AzurePowerShell@3
