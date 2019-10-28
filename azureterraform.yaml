@@ -12,7 +12,7 @@ jobs:
       Script: |
         New-AzureRmResourceGroup -Name TerraformStorageRG -Location 'East US' 
         New-AzureRmStorageAccount -Name TerraformStorageAccount -ResourceGroupName TerraformStorageRG -SkuName Standard_LRS -Location 'East US'
-        New-AzureRmStorageContainer -ResourceGroupName TerraformStorageRG -StorageAccountName $(TerraformStorageAccount) -Name terraform 
+        New-AzureRmStorageContainer -ResourceGroupName TerraformStorageRG -StorageAccountName TerraformStorageAccount -Name terraform 
 
   - task: AzurePowerShell@3
     displayName: 'Azure PowerShell script to get the storage key'
