@@ -7,7 +7,7 @@ jobs:
   - task: AzureCLI@1
     displayName: 'Azure CLI to deploy azure storage for backend'
     inputs:
-      azureSubscription: 'Microsoft Azure Sponsorship (6d8f994c-9051-4cef-ba61-528bab27d213)'
+      azureSubscription: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
       scriptLocation: inlineScript
       inlineScript: |
         # the following script will create Azure resource group, Storage account and a Storage container which will be used to store terraform state
@@ -19,7 +19,7 @@ jobs:
   - task: AzurePowerShell@3
     displayName: 'Azure PowerShell script to get the storage key'
     inputs:
-      azureSubscription: 'Microsoft Azure Sponsorship (6d8f994c-9051-4cef-ba61-528bab27d213)'
+      azureSubscription: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
       ScriptType: InlineScript
       Inline: |
         # Using this script we will fetch storage key which is required in terraform file to authenticate backend stoarge account
@@ -55,7 +55,7 @@ jobs:
       Arguments: 'init -backend-config="0-backend-config.tfvars"'
       InstallTerraform: true
       UseAzureSub: true
-      ConnectedServiceNameARM: 'Microsoft Azure Sponsorship (6d8f994c-9051-4cef-ba61-528bab27d213)'
+      ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
 
   - task: petergroenewegen.PeterGroenewegen-Xpirit-Vsts-Release-Terraform.Xpirit-Vsts-Release-Terraform.Terraform@2
     displayName: 'Plan Terraform execution'
@@ -64,7 +64,7 @@ jobs:
       Arguments: plan
       InstallTerraform: true
       UseAzureSub: true
-      ConnectedServiceNameARM: 'Microsoft Azure Sponsorship (6d8f994c-9051-4cef-ba61-528bab27d213)'
+      ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
 
   - task: petergroenewegen.PeterGroenewegen-Xpirit-Vsts-Release-Terraform.Xpirit-Vsts-Release-Terraform.Terraform@2
     displayName: 'Apply Terraform'
@@ -73,4 +73,4 @@ jobs:
       Arguments: 'apply -auto-approve'
       InstallTerraform: true
       UseAzureSub: true
-      ConnectedServiceNameARM: 'Microsoft Azure Sponsorship (6d8f994c-9051-4cef-ba61-528bab27d213)'
+      ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
