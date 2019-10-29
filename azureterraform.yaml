@@ -16,7 +16,7 @@ jobs:
         
         call az storage account create --name $(TerraformStorageAccount) --resource-group $(TerraformStorageRG) --location $(location) --sku Standard_LRS
         
-        call az storage container create --name terraform --account-name $(TerraformStorageAccount)
+        call az storage container create --name terraform --account-name $(TerraformStorageAccount) 
 
   - task: AzurePowerShell@3
     displayName: 'Azure PowerShell script to get the storage key'
