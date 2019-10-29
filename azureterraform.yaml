@@ -54,7 +54,7 @@ jobs:
 
   - task: Terraform@2
     inputs:
-      TemplatePath: '.\Build'
+      TemplatePath: '.\Build\service_principal'
       Arguments: 'init'
       PlanPath: 'tf/terraform.tfstate'
       InstallTerraform: true
