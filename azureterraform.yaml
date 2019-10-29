@@ -12,11 +12,11 @@ jobs:
       scriptLocation: inlineScript
       inlineScript: |
         # the following script will create Azure resource group, Storage account and a Storage container which will be used to store terraform state
-        call az group create --location 'East US' --name TerraformStorageRG
+        call az group create --location $(location) --name TerraformStorageRG
         
         call az storage account create --name $(TerraformStorageAccount) --resource-group $(TerraformStorageRG) --location $(location) --sku Standard_LRS
         
-        call az storage container create --name terraform --account-name $(TerraformStorageAccount)
+        call az storage container create --name $(Terraform) --account-name $(TerraformStorageAccount)
 
   - task: AzurePowerShell@3
     displayName: 'Azure PowerShell script to get the storage key'
