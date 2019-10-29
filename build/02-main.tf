@@ -36,9 +36,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
   resource_group_name = "${azurerm_resource_group.aks.name}"
   dns_prefix          = "${local.cluster_name}"
 
-  depends_on = [
-    "module.service_principal",
-  ]
 
   agent_pool_profile {
     name            = "${var.AgentPoolName}"
