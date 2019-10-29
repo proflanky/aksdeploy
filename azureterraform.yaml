@@ -54,9 +54,9 @@ jobs:
 
   - task: Terraform@2
     inputs:
-      TemplatePath: '.\Build\service_principal'
+      TemplatePath: '.\Build'
       Arguments: 'init'
-      PlanPath: 'tf/terraform.tfstate'
+      PlanPath: 'terraform/terraform.tfstate'
       InstallTerraform: true
       UseAzureSub: true
       ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
