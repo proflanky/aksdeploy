@@ -51,14 +51,18 @@ jobs:
     displayName: 'Check values in files'
     enabled: false
 
-  - task: petergroenewegen.PeterGroenewegen-Xpirit-Vsts-Release-Terraform.Xpirit-Vsts-Release-Terraform.Terraform@2
-    displayName: 'Initialise Terraform'
+
+  - task: TerraformTaskV1@0
     inputs:
-      TemplatePath: Build
-      Arguments: 'init -backend-config="0-backend-config.tfvars"'
-      InstallTerraform: true
-      UseAzureSub: true
-      ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
+      provider: 'azurerm'
+      command: 'init'
+      commandOptions: '-out=tfplan'
+      backendServiceArm: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
+      backendAzureRmResourceGroupName: 'aks-rg'
+      backendAzureRmStorageAccountName: 'terraformpipeline'
+      backendAzureRmContainerName: 'terraform'
+      backendAzureRmKey: 'tf/terraform.tfstate'
+
 
   - task: petergroenewegen.PeterGroenewegen-Xpirit-Vsts-Release-Terraform.Xpirit-Vsts-Release-Terraform.Terraform@2
     displayName: 'Plan Terraform execution'
