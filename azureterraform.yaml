@@ -44,8 +44,8 @@ jobs:
   - powershell: |
       Get-ChildItem .\Build -Recurse
     
-      Get-Content .\Build\service_principal\*.tf 
-      Get-Content .\Build\service_principal\*.tfvars 
+      Get-Content .\Build\*.tf 
+      Get-Content .\Build\*.tfvars 
     
       Get-ChildItem Env: | select Name
     displayName: 'Check values in files'
