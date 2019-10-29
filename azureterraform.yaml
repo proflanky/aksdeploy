@@ -52,16 +52,20 @@ jobs:
     enabled: false
 
 
-  - task: TerraformTaskV1@0
-    inputs:
-      provider: 'azurerm'
-      command: 'init'
-      commandOptions: '-out=tfplan'
-      backendServiceArm: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
-      backendAzureRmResourceGroupName: 'aks-rg'
-      backendAzureRmStorageAccountName: 'terraformpipeline'
-      backendAzureRmContainerName: 'terraform'
-      backendAzureRmKey: 'tf/terraform.tfstate'
+  - task: Terraform@2
+  inputs:
+    TemplatePath: '.\Build'
+    Arguments: 'init'
+    PlanPath: 'tf/terraform.tfstate'
+    InstallTerraform: true
+    UseAzureSub: true
+    ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
+    ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
+    ManageState: true
+    SpecifyStorageAccount: true
+    StorageAccountResourceGroup: 'aks-rg'
+    StorageAccountRM: 'terraformpipeline'
+    StorageContainerName: 'terraform''
 
 
   - task: petergroenewegen.PeterGroenewegen-Xpirit-Vsts-Release-Terraform.Xpirit-Vsts-Release-Terraform.Terraform@2
