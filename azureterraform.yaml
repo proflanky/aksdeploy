@@ -26,7 +26,7 @@ jobs:
       Inline: |
         # Using this script we will fetch storage key which is required in terraform file to authenticate backend stoarge account
       
-        $key=(Get-AzureRmStorageAccountKey -ResourceGroupName -AccountName $(TerraformStorageAccount)).Value[0]
+        $key=(Get-AzureRmStorageAccountKey -ResourceGroupName $(TerraformStorageRG) -AccountName $(TerraformStorageAccount)).Value[0]
       
         Write-Host "##vso[task.setvariable variable=TerraformStorageKey]$key"
       azurePowerShellVersion: LatestVersion
