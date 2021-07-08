@@ -58,7 +58,7 @@ jobs:
       Arguments: 'init -backend-config="0-backend-config.tfvars"'
       InstallTerraform: true
       UseAzureSub: true
-      ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
+      ConnectedServiceNameARM: ''
 
   - task: petergroenewegen.PeterGroenewegen-Xpirit-Vsts-Release-Terraform.Xpirit-Vsts-Release-Terraform.Terraform@2
     displayName: 'Plan Terraform execution'
@@ -67,7 +67,7 @@ jobs:
       Arguments: plan
       InstallTerraform: true
       UseAzureSub: true
-      ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
+      ConnectedServiceNameARM: ''
 
   - task: petergroenewegen.PeterGroenewegen-Xpirit-Vsts-Release-Terraform.Xpirit-Vsts-Release-Terraform.Terraform@2
     displayName: 'Apply Terraform'
@@ -76,4 +76,4 @@ jobs:
       Arguments: 'apply -auto-approve'
       InstallTerraform: true
       UseAzureSub: true
-      ConnectedServiceNameARM: 'Visual Studio Enterprise (58fa3f55-da94-476c-bc4a-6e39bb53fac8)'
+      ConnectedServiceNameARM: ''
